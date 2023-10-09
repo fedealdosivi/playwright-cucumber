@@ -1,0 +1,24 @@
+{
+  "name": "playwright-cucumber",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cucumber/cucumber": "^9.6.0",
+    "@playwright/test": "^1.38.1",
+    "@types/istanbul-lib-report": "^3.0.1",
+    "@types/istanbul-reports": "^3.0.2",
+    "@types/node": "^20.8.3",
+    "ts-node": "^10.9.1"
+  },
+  "dependencies": {
+    "istanbul-reports": "^3.1.6",
+    "v8-to-istanbul": "^9.1.3"
+  }
+}
