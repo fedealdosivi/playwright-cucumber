@@ -1,22 +1,12 @@
-import { chromium, expect } from "playwright/test";
-import { Page } from "playwright";
-import { After, AfterAll, Before, Given, Then, When } from '@cucumber/cucumber';
+import { Given, Then, When } from '@cucumber/cucumber';
 import { GuinnessPage } from "../guinness-pom/guinnessPage";
-import { finalizeCoverage, saveV8Coverage } from "../../core/coverageHelper";
 import assert from "assert";
+import { pageFixture } from "../../core/pageFixture";
 
-let page: Page;
 let guinnessPage: GuinnessPage;
 
-Before(async () => {
-    const browser = await chromium.launch({ headless: false });
-    const context = await browser.newContext();
-    page = await context.newPage();
-    await page.coverage.startJSCoverage();
-});
-
 Given('I navigate to {string}', async function (url : string) {
-    guinnessPage = new GuinnessPage(page);
+    guinnessPage = new GuinnessPage(pageFixture.page);
     await guinnessPage.navigate(url);
 });
 
@@ -38,13 +28,4 @@ Then('I should be on the home page', async function () {
     } catch (error) {
         console.log('Could not validate user is on the home page', error);
     }
-});
-
-After(async () => {
-    await saveV8Coverage(guinnessPage.page);
-    await guinnessPage.close();
-});
-
-AfterAll(async () => {
-    await finalizeCoverage();
 });

@@ -1,4 +1,3 @@
-import { expect } from "playwright/test";
 import { BasePage } from "../../core/basePage";
 
 export class GuinnessPage extends BasePage {
@@ -31,7 +30,6 @@ export class GuinnessPage extends BasePage {
         await this.page.locator('section').filter({ hasText: 'FEATURED BEERGUINNESS DRAUGHTTHERE’S NOTHING ON THIS PLANET LIKE A PINT OF THE B' }).getByRole('button').click();
         await this.page.locator('[aria-label="BUY NOW"]').hover();
         await this.page.locator('[aria-label="BUY NOW"]').click();
-        //await expect(this.page.getByText('Retailer Product Stock Price Buy Now There are no available retailers')).toBeVisible();
     }
 }
 
