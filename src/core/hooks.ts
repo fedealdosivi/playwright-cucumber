@@ -4,8 +4,10 @@ import { finalizeCoverage, saveV8Coverage } from "./coverageHelper";
 import { pageFixture } from "./pageFixture";
 
 let browser : Browser;
+let worldContext: any;
 
-Before(async () => {
+Before(async function() {
+    worldContext = this; 
     browser = await chromium.launch({ headless: false });
     const context = await browser.newContext();
     const page = await context.newPage();
@@ -26,7 +28,11 @@ AfterStep(async function({pickle, result}) {
 });
     
 
-After(async () => {
+After(async (scenario) => {
+    if(scenario.result?.status == Status.FAILED){
+        const img = await pageFixture.page.screenshot({path: `./test-results/screenshots/${scenario.pickle.name}`, type:"png"});
+        await worldContext.attach(img, "image/png");
+    }
     await saveV8Coverage(pageFixture.page);
     await pageFixture.page.close();
     await browser.close();
