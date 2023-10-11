@@ -31,7 +31,7 @@ export async function saveV8Coverage(page: Page): Promise<void> {
             await converter.load();
             converter.applyCoverage(entry.functions);
             const data = converter.toIstanbul();
-            console.log("Global coverage map data:", globalCoverageMap.data);
+            //console.log("Global coverage map data:", globalCoverageMap.data);
             globalCoverageMap.merge(data);  // Merge with global map
         } catch (error) {
             console.error(`Error processing entry ${entry.url}:`, error);
