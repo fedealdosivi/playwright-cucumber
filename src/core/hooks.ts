@@ -15,18 +15,12 @@ Before(async function() {
     await pageFixture.page.coverage.startJSCoverage();
 });
 
-// After(async function(scenario) { // Using function instead of an arrow function
-//     const img = await pageFixture.page.screenshot({path: `./test-results/screenshots/${scenario.pickle.name}`, type:"png"});
-//     await this.attach(img, "image/png");
-// });
-
 AfterStep(async function({pickle, result}) { 
     if(result.status == Status.FAILED){
         const img = await pageFixture.page.screenshot({path: `./test-results/screenshots/${pickle.name}`, type:"png"});
         await this.attach(img, "image/png");
     }
 });
-    
 
 After(async (scenario) => {
     if(scenario.result?.status == Status.FAILED){
