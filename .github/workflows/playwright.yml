@@ -41,5 +41,5 @@ jobs:
         name: main-report
         path: |
           ./index.html
-          ./Assets/**
+          ./assets/**
         retention-days: 30
