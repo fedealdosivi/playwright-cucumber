@@ -42,4 +42,5 @@ jobs:
         path: |
           ./index.html
           ./assets/**
+          ./features/**
         retention-days: 30
