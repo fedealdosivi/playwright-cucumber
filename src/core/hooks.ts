@@ -8,7 +8,7 @@ let worldContext: any;
 
 Before(async function() {
     worldContext = this; 
-    browser = await chromium.launch({ headless: false });
+    browser = await chromium.launch({ headless: true });
     const context = await browser.newContext();
     const page = await context.newPage();
     pageFixture.page = page;
