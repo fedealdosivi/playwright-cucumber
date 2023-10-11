@@ -26,6 +26,18 @@ jobs:
     - uses: actions/upload-artifact@v3
       if: always()
       with:
-        name: playwright-report
-        path: playwright-report/  # Ensure this path matches the output location of your HTML report.
+        name: test-results
+        path: test-results/  # Ensure this path matches the output location of your HTML report.
+        retention-days: 30
+    - uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: coverage
+        path: coverage/
+        retention-days: 30
+    - uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: main-report
+        path: ./index.html
         retention-days: 30
