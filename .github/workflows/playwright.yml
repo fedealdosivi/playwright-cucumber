@@ -39,5 +39,8 @@ jobs:
       if: always()
       with:
         name: main-report
-        path: ./index.html
+        path: |
+          ./index.html
+          ./assets/**
+          ./features/**
         retention-days: 30
